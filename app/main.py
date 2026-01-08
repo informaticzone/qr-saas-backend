@@ -54,8 +54,10 @@ app.add_middleware(
         settings.FRONTEND_URL,
         "http://localhost:3000",
         "http://localhost:5173",
-        "http://192.168.1.2:3000",  # IP locale
+        "http://192.168.1.2:3000",
         "http://127.0.0.1:3000",
+        "https://qr-saas-frontend.vercel.app",
+        "https://qr-saas-frontend-3sobmgqpo-informaticzones-projects.vercel.app",
     ],
     allow_credentials=True,
     allow_methods=["*"],
