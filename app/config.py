@@ -26,6 +26,7 @@ class Settings(BaseSettings):
     SECRET_KEY: str = "your-secret-key-change-in-production"
     ALGORITHM: str = "HS256"
     ACCESS_TOKEN_EXPIRE_MINUTES: int = 30
+    ADMIN_SETUP_KEY: str = "setup-admin-2026-change-me"  # Change in production
     
     # Stripe
     STRIPE_PUBLIC_KEY: str = ""
