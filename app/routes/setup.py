@@ -10,7 +10,7 @@ from app.config import settings
 router = APIRouter(tags=["setup"])
 
 
-@router.post("/setup/init-admin")
+@router.get("/setup/init-admin")
 async def initialize_first_admin(
     email: str,
     secret_key: str,
@@ -21,7 +21,7 @@ async def initialize_first_admin(
     This endpoint can only be used once and requires a secret key
     
     Usage:
-    POST /api/setup/init-admin?email=tuaemail@example.com&secret_key=ADMIN_SETUP_KEY
+    GET /api/setup/init-admin?email=tuaemail@example.com&secret_key=ADMIN_SETUP_KEY
     """
     # Check secret key
     if secret_key != settings.ADMIN_SETUP_KEY:
