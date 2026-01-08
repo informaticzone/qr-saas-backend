@@ -63,7 +63,7 @@ class EmailService:
             </ul>
             
             <p>
-                <a href="{{ app_url }}/dashboard" 
+                <a href="{{ frontend_url }}/dashboard.html" 
                    style="background: #4F46E5; color: white; padding: 12px 24px; text-decoration: none; border-radius: 5px; display: inline-block;">
                     Vai alla Dashboard
                 </a>
@@ -78,7 +78,7 @@ class EmailService:
         
         html = Template(template).render(
             user_name=user_name,
-            app_url=settings.APP_URL
+            frontend_url=settings.FRONTEND_URL
         )
         
         return await self.send_email(
