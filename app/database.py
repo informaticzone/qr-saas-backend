@@ -5,11 +5,18 @@ from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 from .config import settings
+import os
+
+# Use SQLite by default if DATABASE_URL is not set
+database_url = settings.DATABASE_URL
+if not database_url or database_url == "":
+    # Use in-memory SQLite for Railway
+    database_url = "sqlite:///./qr_saas.db"
 
 # Create engine
 engine = create_engine(
-    settings.DATABASE_URL,
-    connect_args={"check_same_thread": False} if "sqlite" in settings.DATABASE_URL else {}
+    database_url,
+    connect_args={"check_same_thread": False} if "sqlite" in database_url else {}
 )
 
 # Session factory
