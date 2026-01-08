@@ -15,7 +15,8 @@ from .routes import (
     qr_router,
     analytics_router,
     payments_router,
-    public_router
+    public_router,
+    admin_router
 )
 
 
@@ -70,6 +71,7 @@ app.include_router(auth_router, prefix="/api")
 app.include_router(qr_router, prefix="/api")
 app.include_router(analytics_router, prefix="/api")
 app.include_router(payments_router, prefix="/api")
+app.include_router(admin_router, prefix="/api")
 
 # Static files (for serving QR codes)
 if os.path.exists(settings.QR_STORAGE_PATH):
