@@ -116,6 +116,18 @@ async def create_qr_code(
     db.commit()
     db.refresh(new_qr)
     
+    # Check if user is reaching FREE limit and send warning email
+    if current_user.subscription_plan == "free":
+        qr_count = db.query(QRCode).filter(QRCode.user_id == current_user.id).count()
+        if qr_count >= settings.PLAN_FREE_QR_LIMIT - 1:  # Send warning at limit-1
+            from app.services.email import email_service
+            await email_service.send_qr_limit_warning(
+                to_email=current_user.email,
+                user_name=current_user.full_name or current_user.email,
+                current=qr_count,
+                limit=settings.PLAN_FREE_QR_LIMIT
+            )
+    
     return new_qr
 
 
